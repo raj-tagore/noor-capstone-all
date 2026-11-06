@@ -23,18 +23,15 @@ void Print<T>(string title, IEnumerable<T> rows)
     Console.WriteLine();
 }
 
-// 6. EmployeeName and UnitName of all employees, ascending by employee name.
-var qery = 
-from e in employeeList
-join u in unitList on e.UnitId equals u.UnitId
-orderby e.EmployeeName ascending
-select new { e.EmployeeName, u.UnitName }
-
-            
+// 3. 
 
 
 
-    join u in table2 on e.colt1 equals u.colt2
+
+
+
+
+
 
 
 
