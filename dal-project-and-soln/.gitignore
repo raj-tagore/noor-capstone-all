@@ -1,0 +1,84 @@
+# Scaffolded DB-first DAL (Infosys.QuickKartDBFirst).
+# Patterns are unanchored so they match inside every project folder.
+# Generated entity classes stay in git. Build output does not.
+
+# --- Build output ---
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Ll]og/
+[Ll]ogs/
+artifacts/
+publish/
+
+# --- Visual Studio / MSBuild ---
+.vs/
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.pubxml
+*.publishproj
+*.sln.iml
+project.lock.json
+project.fragment.lock.json
+Generated\ Files/
+
+# --- NuGet ---
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# --- Test results ---
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# --- IDEs ---
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.swp
+*~
+.history/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# --- OS ---
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Local secrets ---
+.env
+.env.*
+!.env.example
+secrets.json
+appsettings.*.local.json
+*.Development.local.json
