@@ -1,8 +1,15 @@
 # CureHospital FA1 retest
 
-Practice copy of the CureHospital exam: SQL Server, Entity Framework data access, and the ASP.NET Core Web API. Solution lines are wrapped in `SOLUTION START` / `SOLUTION END` comments. Signatures, regions, and the `//To Do` lines are the given starter.
+Practice copy of the CureHospital exam: Entity Framework data access and the ASP.NET Core Web API. Solution lines are wrapped in `SOLUTION START` / `SOLUTION END` comments. Signatures, regions, and the `//To Do` lines are the given starter.
 
-There is no Angular app in this problem statement. The graded work is the database script, `CureHospitalRepositoryEF`, and `CureHospitalController`.
+There is no Angular app in this problem statement. The graded work is `CureHospitalRepositoryEF` and `CureHospitalController`.
+
+The stored procedures and functions are part of the given database script. Do not write them. Two repository methods only call them:
+
+- `AddSurgeryDetails` calls `usp_AddSurgeryDetails` and returns that procedure's code and output surgery id.
+- `GetSurgeryDetails` calls `ufn_FetchSurgeryDetails`.
+
+`usp_AddDoctorDetails` and `ufn_FetchSurgeryCount` are in the script and are not called by any repository method. The other four repository methods use Entity Framework directly.
 
 ## What was recreated
 
@@ -37,7 +44,7 @@ Swagger is at `http://localhost:5111/swagger`. Action URLs look like `http://loc
 
 ## Return codes worth remembering
 
-`usp_AddSurgeryDetails` returns `1` and the new surgery id on success. Otherwise the OUT id is `0`:
+The given procedure `usp_AddSurgeryDetails` returns `1` and the new surgery id on success. Otherwise the OUT id is `0`. `AddSurgeryDetails` passes that result through:
 
 | Code | Meaning |
 | --- | --- |

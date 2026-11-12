@@ -1,7 +1,10 @@
--- GIVEN: tables and sample data from the problem statement.
+-- GIVEN: tables, sample data, stored procedures, and functions.
+-- The exam script already contains these objects. The C# work only calls them.
+-- AddSurgeryDetails calls usp_AddSurgeryDetails.
+-- GetSurgeryDetails calls ufn_FetchSurgeryDetails.
+-- usp_AddDoctorDetails and ufn_FetchSurgeryCount are not called by any repository method.
 -- The exam catalog name is CureHospitalDB. This practice copy uses CureHospitalFA1DB
 -- so the database already used by capstone-3 is left in place.
--- SOLUTION objects (stored procedures and functions) are marked below.
 
 USE [master]
 GO
@@ -69,7 +72,7 @@ INSERT INTO Surgery VALUES (1001, DATEADD(DAY, 2, CAST(GETDATE() AS DATE)), 9.00
 INSERT INTO Surgery VALUES (1002, DATEADD(DAY, 5, CAST(GETDATE() AS DATE)), 10.00, 16.00, 'CAR')
 GO
 
--- ===== SOLUTION START: usp_AddSurgeryDetails =====
+-- ===== GIVEN: usp_AddSurgeryDetails (call this from AddSurgeryDetails; do not rewrite it) =====
 -- Return codes follow the published DAL test table.
 -- The slide text says "-4 if start time is less than end time".
 -- The test row start=12 end=10 returns -4, so -4 means start is NOT less than end.
@@ -124,9 +127,9 @@ BEGIN
     END CATCH
 END
 GO
--- ===== SOLUTION END: usp_AddSurgeryDetails =====
+-- ===== END GIVEN: usp_AddSurgeryDetails =====
 
--- ===== SOLUTION START: usp_AddDoctorDetails =====
+-- ===== GIVEN: usp_AddDoctorDetails (not called by the repository) =====
 CREATE OR ALTER PROCEDURE usp_AddDoctorDetails
     @DoctorName VARCHAR(50),
     @SpecializationCode CHAR(3),
@@ -153,9 +156,9 @@ BEGIN
     END CATCH
 END
 GO
--- ===== SOLUTION END: usp_AddDoctorDetails =====
+-- ===== END GIVEN: usp_AddDoctorDetails =====
 
--- ===== SOLUTION START: ufn_FetchSurgeryDetails =====
+-- ===== GIVEN: ufn_FetchSurgeryDetails (call this from GetSurgeryDetails; do not rewrite it) =====
 -- Columns shown on the slide: SurgeryID, DoctorName, SpecializationName, SurgeryDate, StartTime.
 -- EndTime is included so each row still has the surgery window.
 CREATE OR ALTER FUNCTION ufn_FetchSurgeryDetails (@SurgeryDate DATE)
@@ -175,9 +178,9 @@ RETURN
     WHERE s.SurgeryDate = @SurgeryDate
 );
 GO
--- ===== SOLUTION END: ufn_FetchSurgeryDetails =====
+-- ===== END GIVEN: ufn_FetchSurgeryDetails =====
 
--- ===== SOLUTION START: ufn_FetchSurgeryCount =====
+-- ===== GIVEN: ufn_FetchSurgeryCount (not called by the repository) =====
 CREATE OR ALTER FUNCTION ufn_FetchSurgeryCount
 (
     @SpecializationName VARCHAR(50),
@@ -197,4 +200,4 @@ BEGIN
     RETURN ISNULL(@Count, 0);
 END
 GO
--- ===== SOLUTION END: ufn_FetchSurgeryCount =====
+-- ===== END GIVEN: ufn_FetchSurgeryCount =====

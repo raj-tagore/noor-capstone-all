@@ -146,6 +146,7 @@ public class CureHospitalRepositoryEF
         try
         {
             // ===== SOLUTION START =====
+            // GIVEN procedure: usp_AddSurgeryDetails. This method only calls it.
             // A null category is the published case that must come back as -98 with OUT 0.
             // Passing it through to SQL would be a missing category (-2), not a DAL exception.
             if (surgeryCategory == null)
@@ -187,6 +188,7 @@ public class CureHospitalRepositoryEF
         try
         {
             // ===== SOLUTION START =====
+            // GIVEN function: ufn_FetchSurgeryDetails. This method only calls it.
             obj = context.SurgeryDetails
                 .FromSqlInterpolated($"SELECT * FROM ufn_FetchSurgeryDetails({surgeryDate.Date})")
                 .ToList();
