@@ -23,7 +23,6 @@ void Print<T>(string title, IEnumerable<T> rows)
     Console.WriteLine();
 }
 
-// 3. 
 
 
 
