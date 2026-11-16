@@ -22,7 +22,7 @@ namespace CureWellServices.Controllers
             try
             {
                 var doctorsList = rep.GetAllDoctors();
-                if (doctorsList.Any())
+                if (doctorsList.Any()) //Miscallenos
                 {
                     foreach (var item in doctorsList)
                     {

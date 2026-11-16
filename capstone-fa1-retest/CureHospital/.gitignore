@@ -81,3 +81,6 @@ Desktop.ini
 secrets.json
 appsettings.*.local.json
 *.Development.local.json
+
+# Machine-specific connection string override (macOS / Docker SQL Server)
+appsettings.Local.json

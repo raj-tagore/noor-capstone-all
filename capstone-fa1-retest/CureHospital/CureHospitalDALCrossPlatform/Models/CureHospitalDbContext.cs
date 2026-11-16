@@ -49,6 +49,7 @@ public class CureHospitalDbContext : DbContext
         var config = new ConfigurationBuilder()
             .SetBasePath(basePath)
             .AddJsonFile(settingsFile)
+            .AddJsonFile("appsettings.Local.json", optional: true)
             .Build();
         optionsBuilder.UseSqlServer(config.GetConnectionString("DBConnectionString"));
     }
