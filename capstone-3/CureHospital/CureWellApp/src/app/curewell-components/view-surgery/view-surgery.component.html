@@ -1,0 +1,96 @@
+<!--
+  View Surgery page.
+
+  Shown when the URL is /viewSurgery. That path is mapped to
+  ViewSurgeryComponent in app.routing.ts, and this file is the
+  templateUrl of that component (view-surgery.component.ts).
+  app.component.html places the page inside <router-outlet>.
+-->
+<div class="page">
+  <h2>View Surgery</h2>
+  <label>Surgery Date</label>
+
+  <!--
+    [(ngModel)] is two-way binding. The select reads and writes
+    surgeryDate on ViewSurgeryComponent. FormsModule (app.module.ts)
+    registers ngModel. The name attribute is required so Angular can
+    track this control.
+
+    The placeholder option uses [ngValue]="undefined" so the bound
+    value is really undefined, not the words in the label.
+    getSurgery() in the component treats that as "no date chosen".
+  -->
+  <select [(ngModel)]="surgeryDate" name="surgeryDate">
+    <option [ngValue]="undefined">-- Select Surgery Date --</option>
+
+    <!--
+      *ngFor repeats the option once per entry in surgeryDates.
+      ngOnInit() fills that array by calling
+      CurewellService.getAllSurgeryDates()
+      (curewell.service.ts), which GETs
+      http://localhost:5110/api/CureWell/GetAllSurgeryDates.
+      {{ date }} prints the string, for example 2026-10-23.
+      [ngValue] stores that same string in surgeryDate when chosen.
+    -->
+    <option *ngFor="let date of surgeryDates" [ngValue]="date">{{ date }}</option>
+  </select>
+
+  <!--
+    (click) calls getSurgery() in view-surgery.component.ts.
+    That method calls CurewellService.getSurgeries(surgeryDate),
+    a GET to /api/CureWell/GetSurgeryDetails?surgeryDate=...
+  -->
+  <div>
+    <button class="btn" (click)="getSurgery()">Fetch</button>
+  </div>
+
+  <!--
+    *ngIf keeps this div out of the page while showMsgDiv is false.
+    getSurgery() sets the flag and errorMsg when the request fails.
+  -->
+  <div *ngIf="showMsgDiv">{{ errorMsg }}</div>
+
+  <!--
+    The table is rendered only when surgeryList has rows.
+    ?. avoids an error while surgeryList is still null, before Fetch.
+    Each row is a SurgeryDetail (curewell-interfaces/surgery.ts),
+    the JSON body returned by GetSurgeryDetails.
+  -->
+  <table *ngIf="surgeryList?.length > 0">
+    <tr>
+      <th>Surgery Id</th>
+      <th>Doctor Name</th>
+      <th>Specialization Name</th>
+      <th>Surgery Date</th>
+      <th>End Time</th>
+      <th>Start Time</th>
+      <th>Action</th>
+    </tr>
+
+    <!-- One table row per surgery. item is the current SurgeryDetail. -->
+    <tr *ngFor="let item of surgeryList">
+      <td>{{ item.surgeryId }}</td>
+      <td>{{ item.doctorName }}</td>
+      <td>{{ item.specializationName }}</td>
+
+      <!--
+        The date pipe turns the API value 2026-10-23T00:00:00
+        into 23/10/2026. DatePipe is available because app.module.ts
+        imports BrowserModule.
+      -->
+      <td>{{ item.surgeryDate | date:'dd/MM/yyyy' }}</td>
+      <td>{{ item.endTime }}</td>
+      <td>{{ item.startTime }}</td>
+
+      <!--
+        Passes this row into editSurgery() in the component class.
+        That method builds the URL
+        /editSurgery/:surgeryId/:specializationName/:surgeryDate/...
+        declared in app.routing.ts. The router then creates
+        UpdateSurgeryComponent, whose template is
+        update-surgery.component.html.
+      -->
+      <td><button class="btn" (click)="editSurgery(item)">Edit Surgery Time</button></td>
+    </tr>
+  </table>
+</div>

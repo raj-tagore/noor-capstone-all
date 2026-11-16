@@ -1,0 +1,103 @@
+<!--
+  Update Surgery page.
+
+  Template for UpdateSurgeryComponent (update-surgery.component.ts).
+  The router shows it for
+  /editSurgery/:surgeryId/:specializationName/:surgeryDate/:startTime/:endTime/:doctorName/:doctorId/:surgeryCategory
+  (app.routing.ts). ViewSurgeryComponent.editSurgery() is what
+  navigates here, from the Edit Surgery Time button.
+-->
+<div class="card">
+  <h2>Update Surgery</h2>
+
+  <!--
+    #updateForm="ngForm" gives this form a template reference.
+    (ngSubmit) runs editSurgery() in the component when a
+    type="submit" button is clicked and the button is not disabled.
+    ngSubmit and ngModel both come from FormsModule in app.module.ts.
+  -->
+  <form #updateForm="ngForm" (ngSubmit)="editSurgery()">
+    <!--
+      Read-only. [(ngModel)] displays surgeryId, which ngOnInit copied
+      from the route. The user cannot change the id that the PUT
+      will send. name is required by ngModel.
+    -->
+    <div>
+      <label>Surgery ID:</label>
+      <input name="surgeryId" [(ngModel)]="surgeryId" readonly>
+    </div>
+    <div>
+      <label>Doctor Name:</label>
+      <input name="doctorName" [(ngModel)]="doctorName" readonly>
+    </div>
+    <div>
+      <label>Specialization Name:</label>
+      <input name="specializationName" [(ngModel)]="specializationName" readonly>
+    </div>
+
+    <!--
+      Editable start time. type="number" and step="0.01" allow values
+      such as 9.00. required marks the control invalid while it is empty.
+      [(ngModel)] keeps the input and the startTime property in sync.
+      #startField="ngModel" exports that control so the *ngIf lines
+      below can read .invalid, .touched, and .dirty.
+
+      touched means the user has entered and left the box.
+      dirty means the value changed.
+      The problem statement shows the mandatory and range messages
+      only after one of those happens. canUpdate() in the component
+      does not wait for touched: it looks at the values themselves.
+    -->
+    <div>
+      <label>Start Time (24 Hrs):</label>
+      <input name="startTime" type="number" step="0.01" required [(ngModel)]="startTime" #startField="ngModel">
+      <div class="error" *ngIf="startField.invalid && (startField.touched || startField.dirty)">Start Time is mandatory</div>
+      <div class="error" *ngIf="(startField.touched || startField.dirty) && timeOutOfRange(startTime)">Start Time must be between 0.00 and 23.59</div>
+    </div>
+
+    <!--
+      Same pattern for end time. The third message calls
+      endBeforeStart() in the component, which compares the two
+      ngModel properties. It is shown whenever end is before start,
+      because that rule is about the pair of values.
+    -->
+    <div>
+      <label>End Time (24 Hrs):</label>
+      <input name="endTime" type="number" step="0.01" required [(ngModel)]="endTime" #endField="ngModel">
+      <div class="error" *ngIf="endField.invalid && (endField.touched || endField.dirty)">End Time is mandatory</div>
+      <div class="error" *ngIf="(endField.touched || endField.dirty) && timeOutOfRange(endTime)">End Time must be between 0.00 and 23.59</div>
+      <div class="error" *ngIf="endBeforeStart()">End Time should not be less than Start Time</div>
+    </div>
+
+    <!--
+      type="date" needs the value yyyy-MM-dd. ngOnInit stores only
+      the first 10 characters of the route parameter, which arrives
+      from the list page as 2026-10-23T00:00:00.
+      dateNotAfterToday() enforces "greater than today".
+    -->
+    <div>
+      <label>Surgery Date:</label>
+      <input name="surgeryDate" type="date" required [(ngModel)]="surgeryDate" #dateField="ngModel">
+      <div class="error" *ngIf="dateField.invalid && (dateField.touched || dateField.dirty)">Surgery Date is mandatory</div>
+      <div class="error" *ngIf="(dateField.touched || dateField.dirty) && dateNotAfterToday()">Surgery Date should not be less than current date</div>
+    </div>
+
+    <div class="actions">
+      <!--
+        type="submit" fires (ngSubmit) on the form, which calls
+        editSurgery(). [disabled] is bound to canUpdate() in the
+        component. While that method returns false the button is grey
+        and the form does not submit.
+        A valid pre-filled surgery (times in range, end after start,
+        date after today) leaves the button enabled immediately.
+      -->
+      <button class="update" type="submit" [disabled]="!canUpdate()">Update</button>
+
+      <!--
+        type="button" so this click does not submit the form.
+        cancel() navigates back to /viewSurgery with no PUT.
+      -->
+      <button class="cancel" type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

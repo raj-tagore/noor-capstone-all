@@ -1,0 +1,20 @@
+<!--
+  Shell that stays on screen for every route.
+  AppComponent (app.component.ts) owns this template.
+  index.html loads it with <app-root>, the component's selector.
+-->
+<nav class="navbar">
+  <!--
+    routerLink changes the URL without a full page reload.
+    Both links go to /viewSurgery, the first route in app.routing.ts,
+    which shows view-surgery.component.html.
+  -->
+  <a class="brand" routerLink="/viewSurgery">CureWell</a>
+  <a routerLink="/viewSurgery">View Surgery</a>
+</nav>
+
+<!--
+  The page under the bar. The router swaps this region between
+  ViewSurgeryComponent and UpdateSurgeryComponent using app.routing.ts.
+-->
+<router-outlet></router-outlet>

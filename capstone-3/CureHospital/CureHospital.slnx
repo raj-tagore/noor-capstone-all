@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="CureHospitalDALCrossPlatform/CureHospitalDALCrossPlatform.csproj" />
+  <Project Path="CureHospitalTest/CureHospitalTest.csproj" />
+  <Project Path="CureHospitalWebService/CureHospitalWebService.csproj" />
+</Solution>
