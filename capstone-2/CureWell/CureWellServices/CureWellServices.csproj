@@ -14,4 +14,10 @@
     <ProjectReference Include="..\CureWellDataAccessLayer\CureWellDataAccessLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings.Local.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

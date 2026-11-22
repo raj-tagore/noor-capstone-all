@@ -70,3 +70,4 @@ Desktop.ini
 !.env.example
 secrets.json
 appsettings.*.local.json
+appsettings.Local.json

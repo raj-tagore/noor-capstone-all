@@ -28,7 +28,8 @@ public partial class CureWellDbContext : DbContext
     {
         var builder = new ConfigurationBuilder()
                       .SetBasePath(Directory.GetCurrentDirectory())
-                      .AddJsonFile("appsettings.json");
+                      .AddJsonFile("appsettings.json")
+                      .AddJsonFile("appsettings.Local.json", optional: true);
         var config = builder.Build();
         var connectionString = config.GetConnectionString("CureWellDBConnectionString");
         if (!optionsBuilder.IsConfigured)
