@@ -1,0 +1,239 @@
+Cure Well - Hospital Management Web Application
+
+Problem Statement: 
+
+“Cure Well” is a renowned hospital in Sydney. They require an application to plan surgeries based on the specialization and availability of doctors. You have been provided with SQL database objects and data repository created using Entity Framework Core and services created using ASP.NET Core Web API. You are expected to implement the Angular web application for the given requirements.
+
+Click here to download the supplied files.
+
+ 
+
+DATABASE
+
+ Execute the given SQL script. Verify for the successful execution of the supplied script.
+
+Database Design:
+
+
+
+Fig: 01
+
+ 
+
+ 
+
+a. Table Name:  Doctor
+
+This table contains the details of doctors.
+
+
+
+Sample Data
+
+
+
+ 
+
+b. Table Name: Specialization
+
+This table contains the details of all specializations.
+
+Fields:
+
+
+
+Sample Data:
+
+
+
+ 
+
+c. Table Name: DoctorSpecialization
+
+This table contains the specialization details of doctors.
+
+
+
+Note: Combination of DoctorID and SpecializationCode is the primary key of the table
+
+ 
+
+Sample Data:
+
+
+
+ 
+
+d. Table Name: Surgery
+
+This table contains the details of all the surgeries.
+
+
+
+Sample Data:
+
+
+
+Note: StartTime and EndTime should be in HH.MM (24 hours) format.
+
+ 
+
+    Data Access Layer Implementation Details
+
+The following DAL methods have been implemented and provided to you in form of a dynamic link library
+
+
+ 
+
+
+
+ 
+
+Note
+
+The provided solution has the following items
+CureWell Data Access Layer (Dynamic Link Library)
+ASP.NET Web API Core project
+Angular project
+The reference for Cure Well Data Access Layer (Dynamic Link Library) is already added to ASP.NET Web API
+No extra code should be written to access Database object. Only the provided DLL should be used to access the Data Access Layer methods
+Adhere to the DO NOT MODIFY instructions given in the provided solution
+ 
+
+     ASP.NET Web API Core
+
+The classes and properties for the Models are as follows
+
+
+ 
+
+Controller Implementation of Home
+
+The following actions are present in the ‘HomeController’
+
+
+
+   
+
+Angular 
+
+                                                                                                                                       
+
+Implement exception handling in all the methods                                             
+
+ 
+
+Implementation of CureWellService
+
+The following methods in ‘CureWell.service.ts’ need to be implemented.
+
+
+
+ 
+
+Component Implementation of view-doctor
+
+The following methods in ‘view-doctor.component.ts’ need to be implemented.
+
+
+
+ 
+
+Component Implementation of add-doctor
+
+The following methods in ‘add-doctor.component.ts’ need to be implemented
+
+
+
+Component Implementation of update-doctor
+
+The following methods in ‘update-doctor.component.ts’ need to be implemented
+
+
+ 
+
+ 
+
+Component Implementation of view-specialization
+
+The following methods in ‘view-specialization.component.ts’ need to be implemented
+
+
+Component Implementation of view-todays-surgery
+
+The following methods in ‘view-todays-surgery.component.ts’ need to be implemented
+
+
+ 
+
+Component Implementation of update-surgery
+
+The following methods in ‘update-surgery.component.ts’ need to be implemented
+
+
+Implementation of view-doctors.component.html                                                             
+
+
+
+Figure 1-All the doctor details should be populated as shown
+
+Implementation of update-doctor.component.html                                                                                                                                                                                                                       
+
+On clicking the Edit Doctor Details button in the ViewDoctors, the Update Doctor page should be displayed by populating the respective doctor’s name.
+The Update Doctor view should have a required field validation for Doctor name. The validation message “Name is required” must appear when the text box is touched and dirty.
+
+
+Figure 3
+
+Implementation of add-doctor.component.html
+
+The View Doctor view should have a required field validation for Doctor name.                                                                                                                                                                                                               
+The validation message “Name is required” must appear when the text box is touched and dirty.
+
+
+Figure 4
+
+On successful addition, the message must be displayed as follows:
+
+
+
+Implementation of view-specializations.component.html                                                                                                                                                                                                                                   
+
+
+
+Figure 5
+
+Implementation of view-todays-surgery.component.html                                                
+
+                                                                                                   
+
+                                                                                                                                                                                                                         
+
+Each surgery detail should have Edit Surgery Time button which will allow the hospital admin to update the time of the surgery      
+Implementation of update-surgery.component.html                                                                                                                                                                              
+
+The DoctorId, SurgeryDate and SurgeryCategory must be read-only fields. StartTime and EndTime are required fields.
+The error messages “Start time is required” and “End time is required” must appear when the text boxes are touched and dirty.
+The StartTime must be less than the EndTime.
+Use 24hour format.
+ 
+
+
+
+ 
+
+
+
+ 
+
+ 
+
+Use the below rubric for getting the project evaluated by your SMEs from your project or account.
+
+
+
+ 
+
+                                    ***************************** END****************************                                                       
+
+ 
