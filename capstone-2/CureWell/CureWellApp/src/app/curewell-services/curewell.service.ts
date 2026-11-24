@@ -26,6 +26,18 @@ export class CurewellService {
     return null;
   }
 
+  //GetDoctorById — GET api/CureWell/GetDoctorById/{doctorId}
+  getDoctorById(doctorId: number): Observable<Doctor> {
+    //To do implement necessary logic
+    return null;
+  }
+
+  //GetDoctorByEmail — GET api/CureWell/GetDoctorByEmail?email=
+  getDoctorByEmail(email: string): Observable<Doctor> {
+    //To do implement necessary logic
+    return null;
+  }
+
   //GetSpecialization
   getAllSpecializations(): Observable<Specialization[]> {
     //To do implement necessary logic

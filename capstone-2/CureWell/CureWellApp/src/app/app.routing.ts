@@ -5,10 +5,12 @@ import { ViewTodaysSurgeryComponent } from './curewell-components/view-todays-su
 import { AddDoctorComponent } from './curewell-components/add-doctor/add-doctor.component';
 import { UpdateDoctorComponent } from './curewell-components/update-doctor/update-doctor.component';
 import { UpdateSurgeryComponent } from './curewell-components/update-surgery/update-surgery.component';
+import { FindDoctorComponent } from './curewell-components/find-doctor/find-doctor.component';
 
 
 export var routing = RouterModule.forRoot([
   { path: 'viewDoctors', component: ViewDoctorComponent },
+  { path: 'findDoctor', component: FindDoctorComponent },
   { path: 'viewSpecialization', component: ViewSpecializationComponent },
   { path: 'viewTodaySurgery', component: ViewTodaysSurgeryComponent },
   { path: 'addDoctor', component: AddDoctorComponent },

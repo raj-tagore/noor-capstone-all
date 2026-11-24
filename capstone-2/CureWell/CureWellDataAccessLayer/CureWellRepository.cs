@@ -32,6 +32,44 @@ namespace CureWellDataAccessLayer
 
         #endregion
 
+        #region GetDoctorById
+        public Doctor GetDoctorById(int doctorId)
+        {
+            try
+            {
+                return Context.Doctors.Find(doctorId);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        #endregion
+
+        #region GetDoctorByEmail
+        public Doctor GetDoctorByEmail(string email)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(email))
+                {
+                    return null;
+                }
+
+                string wanted = email.Trim();
+                return GetAllDoctors().FirstOrDefault(doctor =>
+                    string.Equals(
+                        doctor.DoctorName.Trim().ToLowerInvariant() + "@curewell.com",
+                        wanted,
+                        StringComparison.OrdinalIgnoreCase));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        #endregion
+
         #region GetAllSpecializations - Do not modify the signature
         public List<Specialization> GetAllSpecializations()
         {

@@ -112,15 +112,15 @@ The id goes in the path. The type is one object, not an array.
 ```typescript
 getDoctorById(doctorId: number): Observable<Doctor> {
   return this.http
-    .get<Doctor>(this.baseUrl + 'GetDoctor/' + doctorId)
+    .get<Doctor>(this.baseUrl + 'GetDoctorById/' + doctorId)
     .pipe(catchError(this.errorHandler));
 }
 ```
 
-That requests `http://localhost:5109/api/CureWell/GetDoctor/1001`. A template string builds the same URL:
+That requests `http://localhost:5109/api/CureWell/GetDoctorById/1001`. Question 8 is this call, against the real action. A template string builds the same URL:
 
 ```typescript
-this.http.get<Doctor>(`${this.baseUrl}GetDoctor/${doctorId}`)
+this.http.get<Doctor>(`${this.baseUrl}GetDoctorById/${doctorId}`)
 ```
 
 The component passes the id it already has. `next` receives one `Doctor`, so you read `doctor.doctorName`. There is no `*ngFor`.
@@ -136,7 +136,7 @@ this._curewellService.getDoctorById(this.doctorId).subscribe({
 If the route has no `{doctorId}` slot and the action still takes the id, send it as a query string. `params` turns the object into `?doctorId=1001`:
 
 ```typescript
-this.http.get<Doctor>(this.baseUrl + 'GetDoctor', {
+this.http.get<Doctor>(this.baseUrl + 'GetDoctorById', {
   params: { doctorId: doctorId }
 })
 ```
@@ -145,7 +145,7 @@ this.http.get<Doctor>(this.baseUrl + 'GetDoctor', {
 
 ```typescript
 const params = new HttpParams().set('doctorId', doctorId.toString());
-this.http.get<Doctor>(this.baseUrl + 'GetDoctor', { params });
+this.http.get<Doctor>(this.baseUrl + 'GetDoctorById', { params });
 ```
 
 | The action looks like | You write |
@@ -170,7 +170,7 @@ getDoctorByEmail(email: string): Observable<Doctor> {
 }
 ```
 
-That requests `.../GetDoctorByEmail?email=albert%40curewell.com`.
+That requests `.../GetDoctorByEmail?email=albert%40curewell.com`. Question 8 is this call. The practice addresses are `{name}@curewell.com`, such as `albert@curewell.com`.
 
 Use the path only when the route itself says `{email}`. Encode the value yourself, or `@` is read as part of the URL:
 
@@ -193,7 +193,7 @@ You have the object, and the route wants an id. Read the field and use the id fo
 ```typescript
 getDoctor(doctor: Doctor): Observable<Doctor> {
   return this.http
-    .get<Doctor>(this.baseUrl + 'GetDoctor/' + doctor.doctorId)
+    .get<Doctor>(this.baseUrl + 'GetDoctorById/' + doctor.doctorId)
     .pipe(catchError(this.errorHandler));
 }
 ```

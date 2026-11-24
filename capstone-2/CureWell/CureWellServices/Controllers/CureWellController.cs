@@ -43,6 +43,58 @@ namespace CureWellServices.Controllers
         }
         #endregion
 
+        #region GetDoctorById
+        [HttpGet("{doctorId}")]
+        public JsonResult GetDoctorById(int doctorId)
+        {
+            Models.Doctor doctor = null;
+            try
+            {
+                var item = rep.GetDoctorById(doctorId);
+                if (item != null)
+                {
+                    doctor = ToDoctor(item);
+                }
+            }
+            catch (Exception)
+            {
+                doctor = null;
+            }
+            return Json(doctor);
+        }
+        #endregion
+
+        #region GetDoctorByEmail
+        [HttpGet]
+        public JsonResult GetDoctorByEmail(string email)
+        {
+            Models.Doctor doctor = null;
+            try
+            {
+                var item = rep.GetDoctorByEmail(email);
+                if (item != null)
+                {
+                    doctor = ToDoctor(item);
+                }
+            }
+            catch (Exception)
+            {
+                doctor = null;
+            }
+            return Json(doctor);
+        }
+        #endregion
+
+        private static Models.Doctor ToDoctor(CureWellDataAccessLayer.Models.Doctor item)
+        {
+            return new Models.Doctor()
+            {
+                DoctorId = item.DoctorId,
+                DoctorName = item.DoctorName,
+                Email = item.DoctorName.Trim().ToLowerInvariant() + "@curewell.com"
+            };
+        }
+
         #region GetSpecializations - Do not modify the signature
         [HttpGet]
         public JsonResult GetSpecializations()

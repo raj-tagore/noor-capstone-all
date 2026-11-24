@@ -13,6 +13,7 @@ The screenshots and method tables are in `CureWellApp/ps`. The method names, fie
 | 5. Show specializations | [05-view-specialization.md](05-view-specialization.md) | Same list pattern. `showMsgDiv` actually controls this template |
 | 6. Show today’s surgeries | [06-view-todays-surgery.md](06-view-todays-surgery.md) | `date` pipe, a route with several parameters |
 | 7. Change a surgery’s times | [07-update-surgery.md](07-update-surgery.md) | Several route params, start time must be earlier than end time |
+| 8. Find one doctor | [08-find-doctor.md](08-find-doctor.md) | GET by id in the path, GET by email in the query string. Not part of the exam |
 
 Routes already declared in `app.routing.ts`:
 
@@ -23,6 +24,7 @@ viewTodaySurgery
 addDoctor
 editDoctorDetails/:doctorId/:doctorName
 editSurgery/:doctorId/:endTime/:startTime/:surgeryCategory/:surgeryDate/:surgeryId
+findDoctor
 ```
 
 The API base already in the service is `http://localhost:5109/api/CureWell/`. Action names are appended to that string.

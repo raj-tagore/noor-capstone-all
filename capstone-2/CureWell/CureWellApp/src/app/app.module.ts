@@ -9,6 +9,7 @@ import { AddDoctorComponent } from './curewell-components/add-doctor/add-doctor.
 import { ViewSpecializationComponent } from './curewell-components/view-specialization/view-specialization.component';
 import { ViewTodaysSurgeryComponent } from './curewell-components/view-todays-surgery/view-todays-surgery.component';
 import { UpdateSurgeryComponent } from './curewell-components/update-surgery/update-surgery.component';
+import { FindDoctorComponent } from './curewell-components/find-doctor/find-doctor.component';
 import { HttpClient, HttpHeaders, HttpClientModule } from "@angular/common/http";
 import { routing } from './app.routing';
 
@@ -20,7 +21,8 @@ import { routing } from './app.routing';
     AddDoctorComponent,
     ViewSpecializationComponent,
     ViewTodaysSurgeryComponent,
-    UpdateSurgeryComponent
+    UpdateSurgeryComponent,
+    FindDoctorComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, routing
