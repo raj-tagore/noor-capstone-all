@@ -1,35 +1,28 @@
 # CureWell notes
 
-What you write: `CurewellService` HTTP calls, component methods that subscribe and navigate, and the template-driven validation. Database, DAL, and how to start Visual Studio are already set up.
+Work through these in order. Each file is one exam question. A concept is explained in the question that first needs it. Later questions use that concept and only explain what is new.
 
-Source of the answers: the feature commits in `CureWellApp` (`View Doctors`, `specializations`, `getTodaysSurgery`, `Add doctor`, `UpdateDoctorDetails`, `UpdateSurgery`, `DeleteDoctor`). Method tables are in `CureWellApp/ps`.
+The screenshots and method tables are in `CureWellApp/ps`. The method names, fields, routes, and page shells are already in `CureWellApp`. Fill in the method bodies and the `<!--Add your logic here-->` spots.
 
-## Read order
+| Question | File | What is new |
+|---|---|---|
+| 1. Show every doctor | [01-view-doctors.md](01-view-doctors.md) | `HttpClient` GET, `Observable`, `catchError`, `subscribe`, `ngOnInit`, HTML table, `*ngFor`, `{{ }}` |
+| 2. Edit a doctor’s name | [02-update-doctor.md](02-update-doctor.md) | `(click)`, `router.navigate`, route params, PUT, `ngForm`, `ngModel`, `required`, `alert` |
+| 3. Add a doctor | [03-add-doctor.md](03-add-doctor.md) | POST, a message on the page instead of an alert |
+| 4. Delete a doctor | [04-delete-doctor.md](04-delete-doctor.md) | DELETE with a body, then reload the list |
+| 5. Show specializations | [05-view-specialization.md](05-view-specialization.md) | Same list pattern. `showMsgDiv` actually controls this template |
+| 6. Show today’s surgeries | [06-view-todays-surgery.md](06-view-todays-surgery.md) | `date` pipe, a route with several parameters |
+| 7. Change a surgery’s times | [07-update-surgery.md](07-update-surgery.md) | Several route params, start time must be earlier than end time |
 
-| File | Commit / PS |
-|---|---|
-| [01-reading-the-problem.md](01-reading-the-problem.md) | Which method, which variable, which message |
-| [02-http-and-catcherror.md](02-http-and-catcherror.md) | `HttpClient` + `pipe(catchError)` |
-| [03-subscribe.md](03-subscribe.md) | `next` / `error` / `complete` |
-| [04-router.md](04-router.md) | `navigate` and `snapshot.params` |
-| [05-template-forms.md](05-template-forms.md) | `required`, dirty, touched, readonly |
-| [06-service.md](06-service.md) | Every method in `curewell.service.ts` |
-| [07-view-doctors.md](07-view-doctors.md) | `getDoctor`, navigate to edit |
-| [08-view-specialization.md](08-view-specialization.md) | `getSpecialization` |
-| [09-view-todays-surgery.md](09-view-todays-surgery.md) | `getTodaySurgery`, navigate to edit |
-| [10-add-doctor.md](10-add-doctor.md) | `addDoctor` |
-| [11-update-doctor.md](11-update-doctor.md) | route params + `editDoctorDetails` |
-| [12-update-surgery.md](12-update-surgery.md) | route param **order** + `editSurgery` |
-| [13-delete-doctor.md](13-delete-doctor.md) | `removeDoctor` |
-| [14-api-actions.md](14-api-actions.md) | Controller actions the service calls (`ps/51`, `ps/52`) |
-| [15-doctor-view-edit-flow.md](15-doctor-view-edit-flow.md) | View Doctor and Edit Doctor, from the click through `SaveChanges` |
+Routes already declared in `app.routing.ts`:
 
-## If the PS says X
+```text
+viewDoctors
+viewSpecialization
+viewTodaySurgery
+addDoctor
+editDoctorDetails/:doctorId/:doctorName
+editSurgery/:doctorId/:endTime/:startTime/:surgeryCategory/:surgeryDate/:surgeryId
+```
 
-| PS | Open |
-|---|---|
-| consume the web API | [02](02-http-and-catcherror.md), [06](06-service.md) |
-| store the response in a variable / alert / navigate | [03](03-subscribe.md) |
-| values from the URL | [04](04-router.md), [11](11-update-doctor.md), [12](12-update-surgery.md) |
-| “Name is required” / start time < end time | [05](05-template-forms.md) |
-| returns true/false or a list or null | [14](14-api-actions.md) |
+The API base already in the service is `http://localhost:5109/api/CureWell/`. Action names are appended to that string.

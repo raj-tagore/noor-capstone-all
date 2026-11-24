@@ -2,7 +2,7 @@
   <div class="container">
     
     <h2 align="justify" style="color:brown">Update Surgery</h2>
-    <form #updateSurgeryForm="ngForm" (ngSubmit)="editSurgery(startTime, endTime)">
+    <form #updateSurgeryForm="ngForm">
       <div class="row">
         <div class="col-md-4">
         </div>
@@ -12,7 +12,7 @@
               <label>Surgery Id</label>
             </div>
             <div class="col; input-group">
-              <input type="text" name="surgeryId" class="form-control qkinput" id="surgeryID" [(ngModel)]="surgeryId" readonly>
+              <input type="text" name="surgeryId" class="form-control qkinput" id="surgeryID">
             </div>
           </div>
           <div class="form-group">
@@ -20,7 +20,7 @@
               <label>Doctor Id</label>
             </div>
             <div class="col; input-group">
-              <input type="text" name="doctorId" class="form-control qkinput" id="doctorID" [(ngModel)]="doctorId" readonly>
+              <input type="text" name="doctorId" class="form-control qkinput" id="doctorID">
             </div>
           </div>
 
@@ -29,7 +29,7 @@
               <label>Surgery Date</label>
             </div>
             <div class="col; input-group">
-              <input type="text" name="surgeryDate" class="form-control qkinput" id="surgeryDate" [(ngModel)]="surgeryDate" readonly>
+              <input type="text" name="surgeryDate" class="form-control qkinput" id="surgeryDate">
             </div>
           </div>
 
@@ -38,11 +38,8 @@
               <label>Start Time(24 Hours Format)</label>
             </div>
             <div class="col; input-group">
-              <input type="text" name="starttime" class="form-control qkinput" id="starttime"
-                     required [(ngModel)]="startTime" #startTimeField="ngModel">
-              <div *ngIf="startTimeField.invalid && startTimeField.touched && startTimeField.dirty">
-                Start time is required
-              </div>
+              <input type="text" name="starttime" class="form-control qkinput" id="starttime">
+              <!--Add your logic here-->
             </div>
           </div>
 
@@ -51,14 +48,8 @@
               <label>End Time(24 Hours Format)</label>
             </div>
             <div class="col; input-group">
-              <input type="text" name="endtime" class="form-control qkinput" id="endtime"
-                     required [(ngModel)]="endTime" #endTimeField="ngModel">
-              <div *ngIf="endTimeField.invalid && endTimeField.touched && endTimeField.dirty">
-                End time is required
-              </div>
-              <div *ngIf="startTimeField.valid && endTimeField.valid && +startTime >= +endTime">
-                Start time must be less than end time
-              </div>
+              <input type="text" name="endtime" class="form-control qkinput" id="endtime">
+              <!--Add your logic here-->
             </div>
           </div>
 
@@ -67,13 +58,12 @@
               <label>Surgery Category</label>
             </div>
             <div class="col; input-group">
-              <input type="text" name="surgeryCategory" class="form-control qkinput" id="surgeryCategory" [(ngModel)]="surgeryCategory" readonly>
+              <input type="text" name="surgeryCategory" class="form-control qkinput" id="surgeryCategory">
             </div>
           </div>
 
           <div class="form-group" style="text-align:left">
-            <button type="submit" [disabled]="!updateSurgeryForm['form'].valid || +startTime >= +endTime" class="btn">Update</button> &nbsp;&nbsp;
-            <a routerLink="/viewTodaySurgery">Cancel</a>
+            <!--Add your logic here-->
           </div>
         </div>
         <div class="col-md-4">

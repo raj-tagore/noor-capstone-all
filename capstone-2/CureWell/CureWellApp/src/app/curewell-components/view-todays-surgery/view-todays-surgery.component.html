@@ -16,16 +16,7 @@
       </tr>
 
       <tr *ngFor="let item of surgeryList" id="get_today_surgery" style="background-color:white">
-
-        <td align="center">{{item.surgeryId}}</td>
-        <td align="center">{{item.doctorId}}</td>
-        <td align="center">{{item.surgeryDate | date:"dd/MM/yyyy" }}</td>
-        <td align="center">{{item.endTime}}</td>
-        <td align="center">{{item.startTime}}</td>
-        <td align="center">{{item.surgeryCategory}}</td>
-        <td>
-          <button class="btn" (click)="editSurgery(item)">Edit Surgery Time</button>
-        </td>
+        <!--Add your logic here-->
       </tr>
     </table>
     
@@ -35,4 +26,3 @@
   <br />
   <h3 class="jumbotron" style="text-align:center;">No Surgery Details Available</h3>
 </div>
-

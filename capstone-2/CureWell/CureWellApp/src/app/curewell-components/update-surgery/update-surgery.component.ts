@@ -21,40 +21,10 @@ export class UpdateSurgeryComponent implements OnInit {
   constructor(private route: ActivatedRoute, private _cureWellService: CurewellService, private router: Router) { }
 
   ngOnInit() {
-    this.surgeryId = Number(this.route.snapshot.params['surgeryId']);
-    this.surgeryCategory = this.route.snapshot.params['surgeryCategory'];
-    this.surgeryDate = this.route.snapshot.params['surgeryDate'];
-    this.startTime = Number(this.route.snapshot.params['startTime']);
-    this.endTime = Number(this.route.snapshot.params['endTime']);
-    this.doctorId = Number(this.route.snapshot.params['doctorId']);
+    //To do implement necessary logic
   }
 
   editSurgery(startTime: number, endTime: number) {
-    this._cureWellService.editSurgery(
-      this.doctorId,
-      endTime,
-      startTime,
-      this.surgeryCategory,
-      this.surgeryDate,
-      this.surgeryId
-    ).subscribe({
-      next: (response) => {
-        this.status = response;
-        if (response) {
-          alert('Surgery details updated successfully!');
-        } else {
-          alert('Surgery details not updated');
-        }
-        this.router.navigate(['/viewTodaySurgery']);
-      },
-      error: (error) => {
-        this.errorMsg = error;
-        alert('Some error occurred');
-        this.router.navigate(['/viewTodaySurgery']);
-      },
-      complete: () => {
-        console.log('Updated surgery details successfully');
-      }
-    });
+    //To do implement necessary logic
   }
 }

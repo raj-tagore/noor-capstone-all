@@ -14,33 +14,15 @@ export class ViewTodaysSurgeryComponent implements OnInit {
   constructor(private _curewellService: CurewellService, private router: Router) { }
 
   ngOnInit() {
-    this.getTodaySurgery();
+    //To do implement necessary logic
   }
 
   getTodaySurgery() {
-    this._curewellService.getAllSurgeriesForToday().subscribe({
-      next: (response) => {
-        this.surgeryList = response;
-        console.log("Today's Surgery Fetched Successfully");
-      },
-      error: (error) => {
-        this.surgeryList = null;
-        this.errorMsg = error;
-        this.showMsgDiv = true;
-      }
-    });
+    //To do implement necessary logic
   }
 
   editSurgery(surgery: Surgery) {
-    this.router.navigate([
-      '/editSurgery',
-      surgery.doctorId,
-      surgery.endTime,
-      surgery.startTime,
-      surgery.surgeryCategory,
-      surgery.surgeryDate,
-      surgery.surgeryId
-    ]);
+    //To do implement necessary logic
   }
 
 }

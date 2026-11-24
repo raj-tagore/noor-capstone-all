@@ -26,21 +26,7 @@ export class AddDoctorComponent implements OnInit {
   }
 
   addDoctor(doctorName: string) {
-    this._curewellService.addDoctor(doctorName).subscribe({
-      next: (response) => {
-        this.status = response;
-        this.showDiv = true;
-        this.msg = 'Doctor successfully added';
-      },
-      error: (error) => {
-        this.errorAddMsg = error;
-        this.showDiv = true;
-        this.msg = 'Some error occured';
-      },
-      complete: () => {
-        console.log('Add doctor completed');
-      }
-    });
+    //To do implement necessary logic
   }
 
 }

@@ -19,44 +19,19 @@ export class ViewDoctorComponent implements OnInit {
   constructor(private _curewellService: CurewellService, private router: Router) { }
 
   ngOnInit() {
-    this.getDoctor();
+    //To do implement necessary logic
   }
 
   getDoctor() {
-    this._curewellService.getDoctors().subscribe({
-      next: (res) => {
-        this.doctorList = res;
-        this.showMsgDiv = true;
-        console.log('Doctors Fetched Successfully');
-      },
-      error: (error) => {
-        this.doctorList = null;
-        this.errorMsg = error;
-        this.showMsgDiv = true;
-        console.log('Error fetching doctors');
-      }
-    });
+    //To do implement necessary logic
   }
 
   editDoctorDetails(doctor: Doctor) {
-    this.router.navigate(['/editDoctorDetails', doctor.doctorId, doctor.doctorName]);
+    //To do implement necessary logic
   }
 
   removeDoctor(doctor: Doctor) {
-    this._curewellService.deleteDoctor(doctor).subscribe({
-      next: (response) => {
-        this.status = response;
-        if (response) {
-          alert('Doctor detailed deleted successfully!');
-          this.getDoctor();
-        } else {
-          alert("Doctor's name not deleted");
-        }
-      },
-      error: () => {
-        this.errorMsg = 'Some error occured';
-      }
-    });
+    //To do implement necessary logic
   }
 
 }

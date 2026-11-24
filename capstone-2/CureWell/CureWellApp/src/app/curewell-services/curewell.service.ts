@@ -22,68 +22,50 @@ export class CurewellService {
   
   //GetDoctor
   getDoctors(): Observable<Doctor[]> {
-    return this.http
-      .get<Doctor[]>(this.baseUrl+'GetDoctors')
-      .pipe(catchError(this.errorHandler));
+    //To do implement necessary logic
+    return null;
   }
 
   //GetSpecialization
   getAllSpecializations(): Observable<Specialization[]> {
-   //To do implement necessary logic
-    return this.http
-      .get<Specialization[]>(this.baseUrl+'GetSpecializations').pipe(catchError(this.errorHandler));
+    //To do implement necessary logic
+    return null;
   }
 
   //GetSurgeries
   getAllSurgeriesForToday(): Observable<Surgery[]> {
-    return this.http
-      .get<Surgery[]>(this.baseUrl + 'GetAllSurgeryTypeForToday')
-      .pipe(catchError(this.errorHandler));
+    //To do implement necessary logic
+    return null;
   }
 
   //AddDoctor
   addDoctor(doctorName: string): Observable<boolean> {
-    const doctor: Doctor = { doctorId: 0, doctorName: doctorName };
-    return this.http
-      .post<boolean>(this.baseUrl + 'AddDoctor', doctor)
-      .pipe(catchError(this.errorHandler));
+    //To do implement necessary logic
+    return null;
   }
 
   //EditDoctor
   editDoctorDetails(doctorId: number, doctorName: string): Observable<boolean> {
-    const doctor: Doctor = { doctorId: doctorId, doctorName: doctorName };
-    return this.http
-      .put<boolean>(this.baseUrl + 'UpdateDoctorDetails', doctor)
-      .pipe(catchError(this.errorHandler));
+    //To do implement necessary logic
+    return null;
   }
 
   //editSurgery
   editSurgery(doctorId: number, endTime: number, startTime: number, surgeryCategory: string, surgeryDate: Date, surgeryId: number): Observable<boolean> {
-    const surgery: Surgery = {
-      doctorId: doctorId,
-      endTime: endTime,
-      startTime: startTime,
-      surgeryCategory: surgeryCategory,
-      surgeryDate: surgeryDate as unknown as string,
-      surgeryId: surgeryId
-    };
-    return this.http
-      .put<boolean>(this.baseUrl + 'UpdateSurgery', surgery)
-      .pipe(catchError(this.errorHandler));
+    //To do implement necessary logic
+    return null;
   }
 
   //RemoveDoctor
   deleteDoctor(doctor: Doctor): Observable<boolean> {
-    return this.http
-      .request<boolean>('delete', this.baseUrl + 'DeleteDoctor', { body: doctor })
-      .pipe(catchError(this.errorHandler));
+    //To do implement necessary logic
+    return null;
   }
 
   //ErrorHandler
   errorHandler(error: HttpErrorResponse) {
     //To do implement necessary logic
-    return throwError(error.message || 'ERROR')
-
+    return null;
   }
 
 }

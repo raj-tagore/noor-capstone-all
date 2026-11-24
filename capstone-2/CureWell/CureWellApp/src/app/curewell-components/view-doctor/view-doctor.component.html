@@ -13,10 +13,6 @@
 
       <tr *ngFor="let doctor of doctorList" id='getdoctor' style="background-color:white">
         <!--Add your logic here-->
-        <td>{{doctor.doctorId}}</td>
-        <td>{{doctor.doctorName}}</td>
-        <td> <button class="btn" (click)="editDoctorDetails(doctor)">Edit Doctor Details</button></td>
-        <td> <button class="btn" (click)="removeDoctor(doctor)">Delete Doctor Details</button></td>
       </tr>
     </table>
 
@@ -26,4 +22,3 @@
   <br/>
   <h3 class="jumbotron" style="text-align:center;">No Doctor Available</h3>
 </div>
-
