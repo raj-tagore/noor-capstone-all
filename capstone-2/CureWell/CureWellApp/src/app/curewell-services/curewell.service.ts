@@ -38,6 +38,12 @@ export class CurewellService {
     return null;
   }
 
+  //GetDoctorByObject — POST api/CureWell/GetDoctorByObject with the doctor JSON
+  getDoctorByObject(doctor: Doctor): Observable<Doctor> {
+    //To do implement necessary logic
+    return null;
+  }
+
   //GetSpecialization
   getAllSpecializations(): Observable<Specialization[]> {
     //To do implement necessary logic

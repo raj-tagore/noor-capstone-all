@@ -217,10 +217,10 @@ getDoctorsMatching(doctor: Doctor): Observable<Doctor[]> {
 
 That requests `.../GetDoctors?doctorId=1001&doctorName=Albert`. Use `Doctor[]` when the filter can return many rows, and `Doctor` when the combination is unique.
 
-The action takes one complex parameter as a body. That is a POST, including when the method only searches:
+The action takes one complex parameter as a body. That is a POST, including when the method only searches. Question 8’s action is this case: `POST GetDoctorByObject` with the doctor JSON. Swagger does not show a body editor on a GET.
 
 ```typescript
-this.http.post<Doctor[]>(this.baseUrl + 'SearchDoctors', doctor)
+this.http.post<Doctor>(this.baseUrl + 'GetDoctorByObject', doctor)
 ```
 
 A GET body is the leftover case, and only when the problem says the body is required. `request` is how you attach one. Many hosts ignore it.

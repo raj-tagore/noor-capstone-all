@@ -46,6 +46,33 @@ namespace CureWellDataAccessLayer
         }
         #endregion
 
+        #region FindDoctor
+        public Doctor FindDoctor(int doctorId, string doctorName, string email)
+        {
+            try
+            {
+                if (doctorId > 0)
+                {
+                    return GetDoctorById(doctorId);
+                }
+                if (!string.IsNullOrWhiteSpace(email))
+                {
+                    return GetDoctorByEmail(email);
+                }
+                if (!string.IsNullOrWhiteSpace(doctorName))
+                {
+                    return GetAllDoctors().FirstOrDefault(doctor =>
+                        string.Equals(doctor.DoctorName.Trim(), doctorName.Trim(), StringComparison.OrdinalIgnoreCase));
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        #endregion
+
         #region GetDoctorByEmail
         public Doctor GetDoctorByEmail(string email)
         {

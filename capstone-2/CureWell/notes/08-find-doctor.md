@@ -2,12 +2,13 @@
 
 Find Doctor is extra practice. It is not in the exam screenshots. The API actions are already written. The Angular methods are empty.
 
-Two calls, two different URLs:
+Three calls:
 
 | Method | Request | Returns |
 |---|---|---|
 | `getDoctorById(doctorId)` | `GET http://localhost:5109/api/CureWell/GetDoctorById/1001` | one `Doctor`, or `null` |
 | `getDoctorByEmail(email)` | `GET http://localhost:5109/api/CureWell/GetDoctorByEmail?email=albert@curewell.com` | one `Doctor`, or `null` |
+| `getDoctorByObject(doctor)` | `POST http://localhost:5109/api/CureWell/GetDoctorByObject` with the doctor JSON as the body | one `Doctor`, or `null` |
 
 The id is a path segment. The email is a query parameter, because it contains `@`. Question 1 explains both forms. The pipe and `subscribe` are the same ones you already use.
 
@@ -39,9 +40,24 @@ getDoctorByEmail(email: string): Observable<Doctor> {
     })
     .pipe(catchError(this.errorHandler));
 }
+
+getDoctorByObject(doctor: Doctor): Observable<Doctor> {
+  return this.http
+    .post<Doctor>(this.baseUrl + 'GetDoctorByObject', doctor)
+    .pipe(catchError(this.errorHandler));
+}
 ```
 
 `params` produces `?email=albert%40curewell.com`. Angular encodes the `@`. Do not concatenate the email onto the path.
+
+The object call is `post`, not `get`. A GET is not given a body: Swagger leaves a GET body off the page, and many servers discard it. The action still only looks a doctor up. Send the object you already have:
+
+```typescript
+const doctor: Doctor = { doctorId: doctorId, doctorName: doctorName, email: email };
+this._curewellService.getDoctorByObject(doctor)
+```
+
+The API reads the body in this order: `doctorId` when it is greater than 0, otherwise `email`, otherwise `doctorName`. `{ "doctorId": 1001, "doctorName": "", "email": "" }` returns Albert. `{ "doctorId": 0, "doctorName": "", "email": "olivia@curewell.com" }` returns Olivia. `{ "doctorId": 0, "doctorName": "Susan", "email": "" }` returns Susan.
 
 ## Component
 
@@ -73,6 +89,20 @@ getByEmail(email: string) {
     }
   });
 }
+
+getByObject(doctorId: number, doctorName: string, email: string) {
+  const doctor: Doctor = { doctorId: doctorId, doctorName: doctorName, email: email };
+  this._curewellService.getDoctorByObject(doctor).subscribe({
+    next: (found) => {
+      this.doctor = found;
+      this.errorMsg = '';
+    },
+    error: (error) => {
+      this.doctor = null;
+      this.errorMsg = error;
+    }
+  });
+}
 ```
 
 ## Result markup
@@ -90,4 +120,6 @@ Replace `<!--Add your logic here-->` in `find-doctor.component.html`. `*ngIf="do
 </div>
 ```
 
-Restart the API after this change so `GetDoctorById` and `GetDoctorByEmail` are loaded. Find by id with `1001` shows Albert. Find by email with `olivia@curewell.com` shows Olivia. An unknown id or email leaves the result empty.
+Swagger reads the actions from the process that is running. A page left open from before these actions were added still shows the old list. Stop that API, start it again, and reload `http://localhost:5109/swagger`. The CureWell section then lists `GET /api/CureWell/GetDoctorById/{doctorId}`, `GET /api/CureWell/GetDoctorByEmail`, and `POST /api/CureWell/GetDoctorByObject`.
+
+Find by id with `1001` shows Albert. Find by email with `olivia@curewell.com` shows Olivia. Find by object with id `0`, an empty email, and name `Susan` shows Susan. An unknown id, email, or name leaves the result empty.

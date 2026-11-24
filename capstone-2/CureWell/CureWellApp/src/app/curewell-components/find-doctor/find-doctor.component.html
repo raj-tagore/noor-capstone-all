@@ -14,4 +14,16 @@
   <button class="btn" type="submit">Find by email</button>
 </form>
 
+<br />
+
+<form align="center" #byObjectForm="ngForm" (ngSubmit)="getByObject(doctorId, doctorName, email)">
+  <label>Doctor Id</label>
+  <input type="number" id="object_doctorId" name="objectDoctorId" [(ngModel)]="doctorId">
+  <label>Doctor Name</label>
+  <input type="text" id="object_doctorName" name="objectDoctorName" [(ngModel)]="doctorName">
+  <label>Email</label>
+  <input type="email" id="object_email" name="objectEmail" [(ngModel)]="email">
+  <button class="btn" type="submit">Find by object</button>
+</form>
+
 <!--Add your logic here-->

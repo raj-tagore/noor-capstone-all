@@ -8,6 +8,7 @@ import { CurewellService } from '../../curewell-services/curewell.service';
 export class FindDoctorComponent {
 
   doctorId: number = 0;
+  doctorName: string = '';
   email: string = '';
   doctor: Doctor = null;
   errorMsg: string = '';
@@ -19,6 +20,10 @@ export class FindDoctorComponent {
   }
 
   getByEmail(email: string) {
+    //To do implement necessary logic
+  }
+
+  getByObject(doctorId: number, doctorName: string, email: string) {
     //To do implement necessary logic
   }
 

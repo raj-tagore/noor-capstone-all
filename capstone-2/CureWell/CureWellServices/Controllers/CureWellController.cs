@@ -85,6 +85,30 @@ namespace CureWellServices.Controllers
         }
         #endregion
 
+        #region GetDoctorByObject
+        [HttpPost]
+        public JsonResult GetDoctorByObject([FromBody] Models.Doctor doctor)
+        {
+            Models.Doctor found = null;
+            try
+            {
+                if (doctor != null)
+                {
+                    var item = rep.FindDoctor(doctor.DoctorId, doctor.DoctorName, doctor.Email);
+                    if (item != null)
+                    {
+                        found = ToDoctor(item);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                found = null;
+            }
+            return Json(found);
+        }
+        #endregion
+
         private static Models.Doctor ToDoctor(CureWellDataAccessLayer.Models.Doctor item)
         {
             return new Models.Doctor()
