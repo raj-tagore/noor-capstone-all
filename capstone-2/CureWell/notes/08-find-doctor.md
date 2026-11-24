@@ -7,7 +7,7 @@ Three calls:
 | Method | Request | Returns |
 |---|---|---|
 | `getDoctorById(doctorId)` | `GET http://localhost:5109/api/CureWell/GetDoctorById/1001` | one `Doctor`, or `null` |
-| `getDoctorByEmail(email)` | `GET http://localhost:5109/api/CureWell/GetDoctorByEmail?email=albert@curewell.com` | one `Doctor`, or `null` |
+| `getDoctorByEmail(email)` | `GET http://localhost:5109/api/CureWell/GetDoctorByEmail?email=alberta@curewell.com` | one `Doctor`, or `null` |
 | `getDoctorByObject(doctor)` | `POST http://localhost:5109/api/CureWell/GetDoctorByObject` with the doctor JSON as the body | one `Doctor`, or `null` |
 
 The id is a path segment. The email is a query parameter, because it contains `@`. Question 1 explains both forms. The pipe and `subscribe` are the same ones you already use.
@@ -16,13 +16,13 @@ There is no Email column in the database. The API builds the address from the do
 
 | Id | Name | Email |
 |---|---|---|
-| 1001 | Albert | `albert@curewell.com` |
+| 1001 | Alberta | `alberta@curewell.com` |
 | 1002 | Olivia | `olivia@curewell.com` |
 | 1003 | Susan | `susan@curewell.com` |
 | 1004 | Harry | `harry@curewell.com` |
 | 1005 | Alice | `alice@curewell.com` |
 
-The JSON for a hit looks like `{ "doctorId": 1001, "doctorName": "Albert", "email": "albert@curewell.com" }`. A miss is JSON `null`, and `next` still runs. `error` runs when the request itself fails.
+The JSON for a hit looks like `{ "doctorId": 1001, "doctorName": "Alberta", "email": "alberta@curewell.com" }`. A miss is JSON `null`, and `next` still runs. `error` runs when the request itself fails. The running database has Alberta for id 1001, not Albert. The address is always the stored name in lowercase plus `@curewell.com`.
 
 ## Service
 
@@ -57,7 +57,7 @@ const doctor: Doctor = { doctorId: doctorId, doctorName: doctorName, email: emai
 this._curewellService.getDoctorByObject(doctor)
 ```
 
-The API reads the body in this order: `doctorId` when it is greater than 0, otherwise `email`, otherwise `doctorName`. `{ "doctorId": 1001, "doctorName": "", "email": "" }` returns Albert. `{ "doctorId": 0, "doctorName": "", "email": "olivia@curewell.com" }` returns Olivia. `{ "doctorId": 0, "doctorName": "Susan", "email": "" }` returns Susan.
+The API reads the body in this order: `doctorId` when it is greater than 0, otherwise `email`, otherwise `doctorName`. `{ "doctorId": 1001, "doctorName": "", "email": "" }` returns Alberta. `{ "doctorId": 0, "doctorName": "", "email": "olivia@curewell.com" }` returns Olivia. `{ "doctorId": 0, "doctorName": "Susan", "email": "" }` returns Susan.
 
 ## Component
 
@@ -122,4 +122,4 @@ Replace `<!--Add your logic here-->` in `find-doctor.component.html`. `*ngIf="do
 
 Swagger reads the actions from the process that is running. A page left open from before these actions were added still shows the old list. Stop that API, start it again, and reload `http://localhost:5109/swagger`. The CureWell section then lists `GET /api/CureWell/GetDoctorById/{doctorId}`, `GET /api/CureWell/GetDoctorByEmail`, and `POST /api/CureWell/GetDoctorByObject`.
 
-Find by id with `1001` shows Albert. Find by email with `olivia@curewell.com` shows Olivia. Find by object with id `0`, an empty email, and name `Susan` shows Susan. An unknown id, email, or name leaves the result empty.
+Find by id with `1001` shows Alberta. Find by email with `olivia@curewell.com` shows Olivia. Find by object with id `0`, an empty email, and name `Susan` shows Susan. An unknown id, email, or name leaves the result empty.

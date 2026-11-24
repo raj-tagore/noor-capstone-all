@@ -170,7 +170,7 @@ getDoctorByEmail(email: string): Observable<Doctor> {
 }
 ```
 
-That requests `.../GetDoctorByEmail?email=albert%40curewell.com`. Question 8 is this call. The practice addresses are `{name}@curewell.com`, such as `albert@curewell.com`.
+That requests `.../GetDoctorByEmail?email=alberta%40curewell.com`. Question 8 is this call. The practice addresses are `{name}@curewell.com`, such as `alberta@curewell.com`.
 
 Use the path only when the route itself says `{email}`. Encode the value yourself, or `@` is read as part of the URL:
 
